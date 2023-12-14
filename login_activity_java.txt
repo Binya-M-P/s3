@@ -1,0 +1,57 @@
+package com.example.myapplication2;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText username,password;
+    private Button button1;
+    private static final String valid_username="user";
+    private static final String valid_password="1234";
+
+    //@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        username =findViewById(R.id.username);
+        password =findViewById(R.id.password);
+        button1 =findViewById(R.id.button1);
+
+        button1.setOnClickListener(v -> {
+            //@Override
+            //public void onClick(View view) {
+                String enteredusername=username.getText().toString();
+                String enteredpassword=password.getText().toString();
+                if(isValidCredentials(enteredusername,enteredpassword))
+                {
+                    showToast("Login Successful");
+                }
+                else
+                {
+                    showToast("Invalid Credentials");
+                }
+
+        });}
+        private boolean isValidCredentials(String enteredusername,String enteredpassword)
+        {
+            return valid_username.equals(enteredusername) && valid_password.equals(enteredpassword);
+        }
+        private void showToast(String message)
+        {
+            Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+        }
+    }
+    /*public void addListenerOnButton()
+    {
+        username =findViewById(R.id.username);
+        password =findViewById(R.id.password);
+        button1 =findViewById(R.id.button1);
+
+    }*/
